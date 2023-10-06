@@ -128,8 +128,6 @@ public class Main extends JFrame {
   private JLabel durasiSewaLabel;
   private JButton cetakBtn;
   private JList riwayatList;
-  private JTable riwayatTabel;
-  private DefaultTableModel sewaTableModel = new DefaultTableModel();
   private DefaultListModel<Sewa> sewaListModel = new DefaultListModel<>();
 
   public Main() {
@@ -154,7 +152,6 @@ public class Main extends JFrame {
 
     //input panel
     riwayatList.setModel(sewaListModel);
-    riwayatTabel.setModel(sewaTableModel);
     cetakBtn.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
@@ -165,16 +162,6 @@ public class Main extends JFrame {
           try {
             Sewa sewa = new Sewa(pelanggan, pegawai, ps, inputTanggalSewa.getText(), inputTanggalKembali.getText(), Double.parseDouble(inputDurasiSewa.getText()));
             sewaListModel.addElement(sewa);
-            sewaTableModel.addRow(new Object[]{
-                    sewa.getPelanggan().getNama(),
-                    sewa.getPegawai().getNama(),
-                    sewa.getPs().getTipePS(),
-                    sewa.getTanggalSewa(),
-                    sewa.getTanggalKembali(),
-                    sewa.getDurasi(),
-                    sewa.getTotalBiaya()
-            });
-
             JOptionPane.showMessageDialog(mainPanel, sewa);
           } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(mainPanel, "Isi data dengan lengkap.");
@@ -191,14 +178,6 @@ public class Main extends JFrame {
         inputDurasiSewa.setText("");
       }
     });
-    //riwayat panel
-    sewaTableModel.addColumn("Pelanggan");
-    sewaTableModel.addColumn("Admin");
-    sewaTableModel.addColumn("Tipe PS");
-    sewaTableModel.addColumn("Tanggal Sewa");
-    sewaTableModel.addColumn("Tanggal Kembali");
-    sewaTableModel.addColumn("Lama Sewa (hari)");
-    sewaTableModel.addColumn("Total Harga");
   }
 
   public static void main(String[] args) {
