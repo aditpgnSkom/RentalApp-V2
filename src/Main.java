@@ -180,6 +180,7 @@ public class Main extends JFrame {
             JOptionPane.showMessageDialog(mainPanel, "Isi data dengan lengkap.");
           }
         }
+        //kosongkan text setelah cetak
         inputNamaPelanggan.setText("");
         inputNamaAdmin.setText("");
         inputKodePS.setSelectedItem("Kode-1");
